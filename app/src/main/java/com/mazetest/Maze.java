@@ -2,14 +2,13 @@ package com.mazetest;
 
 import java.util.Scanner;
 
-import com.onmyway.game.Rungame;
 import com.openfile.Openfile;
 
 //Note to self: usar uma classe de Fábrica para instanciar os mapas?
 
 public class Maze{
 
-    public Scanner mazeFile;
+    public static Scanner mazeFile;
     public static Scanner playerScanner;
 
     // Atribs para construção do mapa
@@ -21,27 +20,18 @@ public class Maze{
     static int pos_x; 
     static int pos_y; 
 
-    // Apenas parar testar o fim do laço "comecarJogo()", mais abaixo; na versão final, idealiza-se não existir!
-    public static boolean localObjetivo;
 
-    /**
-     * Construtor padrão da classe; feito assim para automatizar o início de jogo
-     */
-    public Maze(){
-        prepararJogo(); 
-        Rungame.comecarJogo(localObjetivo);
-    }
 
     /**
      * Prepara o mapa de acordo com as instruções do arquivo txt lido (mapa pronto)
      * @param 
      * @return void method; não tem retorno
      */
-    public void prepararJogo(){
+    public static void prepararJogo(){ // RETORNAR O BOLLEAN AQ?
         playerScanner = new Scanner(System.in); // Esse vai ser o Scanner pro jogador/usuario
 
         mazeFile = Openfile.lerArquivo(mazeFile);
-        System.out.println("    'P' é onde você está; \n    'X' são paredes; \n    '.' são locais onde você pode andar.");
+        System.out.println("\t'P' é onde você está; \n\t'X' são paredes; \n\t'.' são locais onde você pode andar.");
 
         linhas = mazeFile.nextInt();
         colunas = mazeFile.nextInt();
@@ -53,10 +43,9 @@ public class Maze{
         montarMapa();  
         mazeFile.close();
 
-        localObjetivo = false;
     }
 
-    private void montarMapa() {
+    private static void montarMapa() {
         for (int i = 0; i < linhas; i++){
             String coladorLinha = mazeFile.nextLine(); 
             for (int j = 0; j < colunas; j++){
@@ -70,25 +59,6 @@ public class Maze{
             }
         }
     }
-
-    /**
-     * Método responsável por iniciar e "segurar" o laço do jogo
-     * @param 
-     * @return void method; has no return
-     */
-/*     public void comecarJogo(){
-        while (!localObjetivo){
-            imprimirMapa(); 
-            Player.mostrarOpcoesJogador();
-            atualizarPosicaoJogador();
-            // movimentoInimigo
-
-        }
-        
-        imprimirMapa();     
-        System.out.println("É isso aí, você conseguiu!!!!");   
-        playerScanner.close();  
-    } */
   
     /**
      * Imprime o mapa em seu estado atual no terminal
@@ -142,9 +112,9 @@ public class Maze{
                 mapa[pos_y][pos_x] =".";
 
                 // Teste para gerar a saída do loop do jogo; não vai precisar disso na versão final (hopefully)
-                if (mapa[pos_y+mudar_y][pos_x+mudar_x].equals("T")) {
-                    localObjetivo = true;
-                }
+                /* if (mapa[pos_y+mudar_y][pos_x+mudar_x].equals("T")) {
+                    a = true;
+                } */
 
                 pos_x = pos_x + mudar_x; 
                 pos_y = pos_y + mudar_y; 
@@ -165,12 +135,6 @@ public class Maze{
         // TODO
     }
 
-
-
-    public static void main(String[] args){
-        new Maze();
-        
-    }
 
 }
     
