@@ -1,36 +1,35 @@
 package com.mazetest;
 
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
+
+import com.onmyway.game.Rungame;
+import com.openfile.Openfile;
 
 //Note to self: usar uma classe de Fábrica para instanciar os mapas?
 
 public class Maze{
 
-    Scanner mazefileTest;
-    Scanner playerScanner;
+    public Scanner mazeFile;
+    public static Scanner playerScanner;
 
     // Atribs para construção do mapa
-    int linhas;
-    int colunas;
-    String [][] mapa;
+    public static int linhas;
+    public static int colunas;
+    static String [][] mapa;
 
     // Atribs para o personagem do jogador
-    int pos_x; 
-    int pos_y; 
+    static int pos_x; 
+    static int pos_y; 
 
     // Apenas parar testar o fim do laço "comecarJogo()", mais abaixo; na versão final, idealiza-se não existir!
-    boolean localObjetivo;
+    public static boolean localObjetivo;
 
     /**
      * Construtor padrão da classe; feito assim para automatizar o início de jogo
      */
     public Maze(){
         prepararJogo(); 
-        comecarJogo();
-        mazefileTest.close();
-        playerScanner.close();  
+        Rungame.comecarJogo(localObjetivo);
     }
 
     /**
@@ -41,33 +40,25 @@ public class Maze{
     public void prepararJogo(){
         playerScanner = new Scanner(System.in); // Esse vai ser o Scanner pro jogador/usuario
 
-        // Scanneando o arquivo txt com os dados de construção do mapa 
+        mazeFile = Openfile.lerArquivo(mazeFile);
+        System.out.println("    'P' é onde você está; \n    'X' são paredes; \n    '.' são locais onde você pode andar.");
 
-        try{
-            mazefileTest = new Scanner(new File("app/src/main/resources/mapa.txt"));
-        }catch(FileNotFoundException e){
-            e.printStackTrace();
-            System.err.println("ERRO: O arquivo não pode ser encontrado...");
-            System.out.println("*** Encerrando abruptamente o jogo ****");
-        }
+        linhas = mazeFile.nextInt();
+        colunas = mazeFile.nextInt();
 
-        System.out.println("O arquivo foi lido com sucesso.");
-        System.out.println("QUE O JOGO COMECE!");
-        System.out.println("******************");
-
-        System.out.println("'P' é onde você está; \n 'X' são paredes; \n '.' são locais onde você pode andar.");
-
-        // Construindo o mapa com os dados lidos
-
-        linhas = mazefileTest.nextInt();
-        colunas = mazefileTest.nextInt();
-
-        mazefileTest.nextLine(); // Uma mera "pula de linha" para os próximos dados - não soube fazer de outro jeito
+        mazeFile.nextLine(); // Uma mera "pula de linha" para os próximos dados - não soube fazer de outro jeito
 
         mapa = new String[linhas][colunas]; 
 
+        montarMapa();  
+        mazeFile.close();
+
+        localObjetivo = false;
+    }
+
+    private void montarMapa() {
         for (int i = 0; i < linhas; i++){
-            String coladorLinha = mazefileTest.nextLine(); 
+            String coladorLinha = mazeFile.nextLine(); 
             for (int j = 0; j < colunas; j++){
 
                 mapa[i][j] = coladorLinha.substring(j, j+1);
@@ -77,17 +68,35 @@ public class Maze{
                     pos_y = i;
                 }
             }
-        }  
-        localObjetivo = false;
+        }
     }
 
+    /**
+     * Método responsável por iniciar e "segurar" o laço do jogo
+     * @param 
+     * @return void method; has no return
+     */
+/*     public void comecarJogo(){
+        while (!localObjetivo){
+            imprimirMapa(); 
+            Player.mostrarOpcoesJogador();
+            atualizarPosicaoJogador();
+            // movimentoInimigo
+
+        }
+        
+        imprimirMapa();     
+        System.out.println("É isso aí, você conseguiu!!!!");   
+        playerScanner.close();  
+    } */
   
     /**
      * Imprime o mapa em seu estado atual no terminal
      * @param 
      * @return void method; não tem retorno
      */
-    public void imprimirMapa(){
+    public static void imprimirMapa(){
+        System.out.println("\n### MAPA ATUAL");
         for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
                 System.out.print(mapa[i][j]);
@@ -97,30 +106,13 @@ public class Maze{
       }  
     }
 
-    
     /**
-     * Inicia um turno do jogador, mostrando as opções que ele tem 
+     * Muda a posição do jogador no mapa de acordo com a escolha do jogador no método "mostrarOpcoesJogador()".
      * @param 
      * @return void method; has no return
      */
-    public void mostrarOpcoesJogador(){
-        System.out.println("******************");
-        System.out.println("Você pode ir para:");
-        System.out.println("W) Cima");
-        System.out.println("S) Baixo");
-        System.out.println("A) Esquerda");
-        System.out.println("D) Direita");
-        System.out.println("Q) Sair do jogo"); 
-        System.out.println("******************");
-        System.out.print("Escolha:");     
-    }
-
-    /**
-     * Muda o mapa de acordo com a escolha do jogador no método "mostrarOpcoesJogador()"
-     * @param 
-     * @return void method; has no return
-     */
-    public void atualizarPosicaoJogador(String inputJogador){
+     public static void atualizarPosicaoJogador(){
+        String inputJogador = playerScanner.next(); 
         int mudar_x = 0; 
         int mudar_y = 0;
        
@@ -157,31 +149,26 @@ public class Maze{
                 pos_x = pos_x + mudar_x; 
                 pos_y = pos_y + mudar_y; 
                 mapa[pos_y][pos_x] = "P"; 
+                System.out.println("Jogada reconhecida; próximo turno!");
             }
         }else{
             System.out.println("Seu comando não está de acordo com o jogo! Tente de novo...");
         }   
-    }
+    } 
 
     /**
-     * Método responsável por iniciar e "segurar" o laço do jogo
+     * Muda a posição dos inimigos no mapa.
      * @param 
      * @return void method; has no return
      */
-    public void comecarJogo(){
-        while (!localObjetivo){
-            imprimirMapa(); 
-            mostrarOpcoesJogador();
-            String userInput = playerScanner.next(); 
-            atualizarPosicaoJogador(userInput);
-        }
-        
-        imprimirMapa();     
-        System.out.println("É isso aí, você conseguiu!!!!");  
+    public void atualizarPosicaoInimigos(){
+        // TODO
     }
 
+
+
     public static void main(String[] args){
-        Maze m = new Maze();
+        new Maze();
         
     }
 

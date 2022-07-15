@@ -5,7 +5,8 @@
 ---
 
 ## Descrição
-OnMyWay é um jogo singleplayer em turnos, maze-like em 2D!
+OnMyWay é um jogo singleplayer em turnos que funciona totalmente pelo terminal, maze-like em 2D!
+
 Basicamente, o jogador está encurralado em um mapa-labirinto. Ele pede, com sucesso, por ajuda, mas precisa sobreviver até que ela chegue, evitando alguns inimigos que surgirão para tentar mata-lo, onde cada um deles tem seu próprio estilo de comportamento e movimento; o objetivo é simples: sobreviva correndo deles pelo mapa-labirinto por (a definir) segundos (na implementação, são os movimentos do jogador) até que a ajuda (que está... à caminho...) chegue! 
 
 * Ideias
