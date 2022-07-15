@@ -5,7 +5,7 @@ import com.onmyway.player.Player;
 
 public class Rungame {
 
-    public static final int TURNOS = 10;
+    public static final int QTD_MAX_TURNOS = 10;
 
     /**
      * Construtor padrão da classe; feito assim para automatizar o início de jogo
@@ -22,13 +22,14 @@ public class Rungame {
      * @return void method; has no return
      */
     public static void comecarJogo(){
-        int contador = 0;
-        while (contador < TURNOS){
+        int turno_atual = 1;
+        while (turno_atual <= QTD_MAX_TURNOS){
+            System.out.println("\nTURNO " + turno_atual + "!");
             Maze.imprimirMapa(); 
             Player.mostrarOpcoesJogador();
             Maze.atualizarPosicaoJogador();
             // movimentoInimigo
-            contador++;
+            turno_atual++;
 
         }
         

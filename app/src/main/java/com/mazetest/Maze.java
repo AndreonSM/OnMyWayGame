@@ -2,7 +2,7 @@ package com.mazetest;
 
 import java.util.Scanner;
 
-import com.openfile.Openfile;
+import com.filemanager.Filemanager;
 
 //Note to self: usar uma classe de Fábrica para instanciar os mapas?
 
@@ -27,10 +27,10 @@ public class Maze{
      * @param 
      * @return void method; não tem retorno
      */
-    public static void prepararJogo(){ // RETORNAR O BOLLEAN AQ?
+    public static void prepararJogo(){ 
         playerScanner = new Scanner(System.in); // Esse vai ser o Scanner pro jogador/usuario
 
-        mazeFile = Openfile.lerArquivo(mazeFile);
+        mazeFile = Filemanager.abrirArquivo(mazeFile);
         System.out.println("\t'P' é onde você está; \n\t'X' são paredes; \n\t'.' são locais onde você pode andar.");
 
         linhas = mazeFile.nextInt();
@@ -41,7 +41,7 @@ public class Maze{
         mapa = new String[linhas][colunas]; 
 
         montarMapa();  
-        mazeFile.close();
+        Filemanager.fecharArquivo(mazeFile);
 
     }
 
@@ -110,11 +110,6 @@ public class Maze{
             else{// Tudo em ordem; prosseguindo com a atualização do mapa
 
                 mapa[pos_y][pos_x] =".";
-
-                // Teste para gerar a saída do loop do jogo; não vai precisar disso na versão final (hopefully)
-                /* if (mapa[pos_y+mudar_y][pos_x+mudar_x].equals("T")) {
-                    a = true;
-                } */
 
                 pos_x = pos_x + mudar_x; 
                 pos_y = pos_y + mudar_y; 

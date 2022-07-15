@@ -1,10 +1,10 @@
-package com.openfile;
+package com.filemanager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Openfile {
+public class Filemanager {
 
     private static final String caminhoArquivo = "app/src/main/resources/mapa.txt";
 
@@ -13,7 +13,7 @@ public class Openfile {
      * @param mazeFile é o scanner especifico para ler as instruções de construção do mapa
      * @return o mesmo scanner
      */
-    public static Scanner lerArquivo(Scanner mazeFile){
+    public static Scanner abrirArquivo(Scanner mazeFile){
         try{
             mazeFile = new Scanner(new File(caminhoArquivo));
         }catch(FileNotFoundException e){
@@ -27,5 +27,9 @@ public class Openfile {
         System.out.println("******************\n");
 
         return mazeFile;
+    }
+
+    public static void fecharArquivo(Scanner file){
+        file.close();
     }
 }
