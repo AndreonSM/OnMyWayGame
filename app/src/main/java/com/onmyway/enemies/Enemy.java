@@ -5,5 +5,5 @@ public interface Enemy {
 
     public void movimentarInimigo(EnumEnemy x);
 
-    
+
 }

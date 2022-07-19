@@ -3,6 +3,7 @@ package com.mazetest;
 import java.util.Scanner;
 
 import com.filemanager.Filemanager;
+import com.onmyway.enemies.*;
 
 //Note to self: usar uma classe de Fábrica para instanciar os mapas?
 
@@ -14,7 +15,7 @@ public class Maze{
     // Atribs para construção do mapa
     public static int linhas;
     public static int colunas;
-    static String [][] mapa;
+    public static String [][] mapa;
 
     // Atribs para o personagem do jogador
     static int pos_x; 
@@ -84,7 +85,7 @@ public class Maze{
      * @param 
      * @return void method; has no return
      */
-     public static void atualizarPosicaoJogador(){
+     public static Integer atualizarPosicaoJogador(){ // retorno adicionado para permitir a passagem de turno apenas com jogadas válidas
         String inputJogador = playerScanner.next(); 
         int mudar_x = 0; 
         int mudar_y = 0;
@@ -109,6 +110,7 @@ public class Maze{
 
             if (mapa[pos_y + mudar_y][pos_x + mudar_x].equals("X")) {
                 System.out.println("Você não pode passar paredes; escolha outra direção!");
+                return -1;
             }
             else{// Tudo em ordem; prosseguindo com a atualização do mapa
 
@@ -118,9 +120,11 @@ public class Maze{
                 pos_y = pos_y + mudar_y; 
                 mapa[pos_y][pos_x] = "P"; 
                 System.out.println("Jogada reconhecida; próximo turno!");
+                return 1;
             }
         }else{
             System.out.println("Seu comando não está de acordo com o jogo! Tente de novo...");
+            return -1;
         }   
     } 
 
@@ -131,7 +135,6 @@ public class Maze{
      */
     public void atualizarPosicaoInimigos(){
         // TODO
-        // por hora, é só uma cópia da posição do jogador sem o Scanner
        int aprox_x = 0;
        int aprox_y = 0;
        int coordX, coordY;
@@ -141,13 +144,13 @@ public class Maze{
        for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
                 
-                if (mapa[i][j] == "Z" || mapa[i][j] == "W"){
-                    //movimentarInimigo(mapa[i][j]);
-                } 
+              /*   if (mapa[i][j] == "Z" || mapa[i][j] == "W"){
+                    EnumEnemy moveIt = EnumEnemy.WASPS;
+                    movimentarInimigo(moveIt);
+                }  */
                 
 
-                System.out.print(mapa[i][j]);
-                System.out.print(" ");
+              
             }
         }
 

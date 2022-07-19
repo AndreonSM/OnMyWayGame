@@ -25,11 +25,18 @@ public class Rungame {
         int turno_atual = 1;
         while (turno_atual <= QTD_MAX_TURNOS){
             System.out.println("\nTURNO " + turno_atual + "!");
+            
             Maze.imprimirMapa(); 
+
             Player.mostrarOpcoesJogador();
-            Maze.atualizarPosicaoJogador();
-            // movimentoInimigo
-            turno_atual++;
+
+            Integer isJogadaOK;
+            isJogadaOK = Maze.atualizarPosicaoJogador();
+            
+            if(isJogadaOK == 1){
+                // movimentoInimigo
+                turno_atual++;
+            }
 
         }
         
