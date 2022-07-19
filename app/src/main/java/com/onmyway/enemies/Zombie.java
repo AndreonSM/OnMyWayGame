@@ -1,6 +1,12 @@
 package com.onmyway.enemies;
 
-public class Zombie {
-    // é o lento
+public class Zombie implements Enemy{
+    
+    
+    @Override
+    public void movimentarInimigo(EnumEnemy x) {
+        // é o lento
+        
+    }
     
 }

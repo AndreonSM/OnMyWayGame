@@ -19,7 +19,7 @@ public class Filemanager {
         }catch(FileNotFoundException e){
             e.printStackTrace();
             System.err.println("ERRO: O arquivo não pode ser encontrado...");
-            System.out.println("*** Encerrando abruptamente o jogo ****\n");
+            System.err.println("*** ENCERRANDO ABRUPTAMENTE O JOGO ****\n");
         }
 
         System.out.println("O arquivo foi lido com sucesso.");
@@ -29,6 +29,12 @@ public class Filemanager {
         return mazeFile;
     }
 
+     /**
+     * Faz exatamente o que sugere; fecha um arquivo. A existência desse método é para caso seja preciso executar outras coisas
+     * em conjunto com o close...
+     * @param 
+     * @return void method; não tem retorno
+     */
     public static void fecharArquivo(Scanner file){
         file.close();
     }

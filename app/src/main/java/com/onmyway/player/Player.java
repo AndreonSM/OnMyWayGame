@@ -18,7 +18,7 @@ public class Player {
         System.out.println("D) Direita");
         System.out.println("Q) Sair do jogo"); 
         System.out.println("******************");
-        System.out.print("Escolha:");     
+        System.out.print("Escolha: ");     
     }
 
     

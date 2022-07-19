@@ -37,6 +37,10 @@ public class Rungame {
         System.out.println("É isso aí, você conseguiu!!!!");  
     }
 
+    /**
+     * Função que inicia o jogo em si!
+     * 
+     */
     public static void main(String[] args){
         new Rungame();
         

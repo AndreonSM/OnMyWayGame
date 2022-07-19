@@ -20,8 +20,6 @@ public class Maze{
     static int pos_x; 
     static int pos_y; 
 
-
-
     /**
      * Prepara o mapa de acordo com as instruções do arquivo txt lido (mapa pronto)
      * @param 
@@ -45,6 +43,11 @@ public class Maze{
 
     }
 
+    /**
+     * Faz o trabalho bruto de preencher a matriz com os elementos do mapa; função auxiliar (refatorada)
+     * @param 
+     * @return void method; não tem retorno
+     */
     private static void montarMapa() {
         for (int i = 0; i < linhas; i++){
             String coladorLinha = mazeFile.nextLine(); 
@@ -104,7 +107,7 @@ public class Maze{
          && pos_y + mudar_y < linhas) {
             // Checando a (im)possibilidade do movimento do jogador
 
-            if (mapa[pos_y+mudar_y][pos_x+mudar_x].equals("X")) {
+            if (mapa[pos_y + mudar_y][pos_x + mudar_x].equals("X")) {
                 System.out.println("Você não pode passar paredes; escolha outra direção!");
             }
             else{// Tudo em ordem; prosseguindo com a atualização do mapa
@@ -128,6 +131,33 @@ public class Maze{
      */
     public void atualizarPosicaoInimigos(){
         // TODO
+        // por hora, é só uma cópia da posição do jogador sem o Scanner
+       int aprox_x = 0;
+       int aprox_y = 0;
+       int coordX, coordY;
+       
+       System.out.println("ELES SE MOVEM RÁPIDO...");
+
+       for (int i = 0; i < linhas; i++){
+            for (int j = 0; j < colunas; j++){
+                
+                if (mapa[i][j] == "Z" || mapa[i][j] == "W"){
+                    //movimentarInimigo(mapa[i][j]);
+                } 
+                
+
+                System.out.print(mapa[i][j]);
+                System.out.print(" ");
+            }
+        }
+
+       if (mapa[pos_y + aprox_y][pos_x + aprox_x].equals("X")) {
+            System.out.println("Você não pode passar paredes; escolha outra direção!");
+        }
+   
+   
+   
+   
     }
 
 
