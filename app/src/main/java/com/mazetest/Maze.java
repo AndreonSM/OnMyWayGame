@@ -83,7 +83,7 @@ public class Maze{
     /**
      * Muda a posição do jogador no mapa de acordo com a escolha do jogador no método "mostrarOpcoesJogador()".
      * @param 
-     * @return void method; has no return
+     * @return -1, se for uma jogada inválida; 1, caso contrário
      */
      public static Integer atualizarPosicaoJogador(){ // retorno adicionado para permitir a passagem de turno apenas com jogadas válidas
         String inputJogador = playerScanner.next(); 
@@ -97,17 +97,16 @@ public class Maze{
             case "s": mudar_x = 0;  mudar_y = 1;  break;
             case "a": mudar_x = -1; mudar_y = 0;  break;
             case "d": mudar_x = 1;  mudar_y = 0;  break;
-            //default: System.out.println("Você digitou algo não reconhecível; tente de novo...");
+            default: System.out.println("Você digitou algo não reconhecível; tente de novo..."); return -1;
         }
 
         // Checando se o jogador não tenta sair do mapa
-
         if (pos_x + mudar_x >= 0 
          && pos_x + mudar_x < colunas 
          && pos_y + mudar_y >=0 
          && pos_y + mudar_y < linhas) {
-            // Checando a (im)possibilidade do movimento do jogador
 
+            // Checando a (im)possibilidade do movimento do jogador
             if (mapa[pos_y + mudar_y][pos_x + mudar_x].equals("X")) {
                 System.out.println("Você não pode passar paredes; escolha outra direção!");
                 return -1;
@@ -119,6 +118,7 @@ public class Maze{
                 pos_x = pos_x + mudar_x; 
                 pos_y = pos_y + mudar_y; 
                 mapa[pos_y][pos_x] = "P"; 
+                
                 System.out.println("Jogada reconhecida; próximo turno!");
                 return 1;
             }
@@ -133,34 +133,43 @@ public class Maze{
      * @param 
      * @return void method; has no return
      */
-    public void atualizarPosicaoInimigos(){
+    public static void atualizarPosicaoInimigos(){
         // TODO
-       int aprox_x = 0;
-       int aprox_y = 0;
-       int coordX, coordY;
-       
+ 
        System.out.println("ELES SE MOVEM RÁPIDO...");
 
        for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
                 
-              /*   if (mapa[i][j] == "Z" || mapa[i][j] == "W"){
-                    EnumEnemy moveIt = EnumEnemy.WASPS;
-                    movimentarInimigo(moveIt);
-                }  */
-                
+                 if (mapa[i][j] == "Z"){
+                    Enemy e = new Zombie();
+                    // TO SELF: fazer um switch que caça os caracteres de Enemy, joga os que encontrar numa lista (GENERICS), movimente-os fora!
+                    e.movimentarInimigo(mapa, linhas, colunas, pos_x, pos_y, i, j);
+                }  
+          
+            }
+        }
+   
+    }
 
-              
+    /**
+     * Checa a existência do personagem/caractere do jogador no mapa.
+     * @return true, se existir; false, caso contrário.
+     */
+    public static boolean isPlayerVivo(){
+
+        for (int i = 0; i < linhas; i++){
+            for (int j = 0; j < colunas; j++){
+                
+                 if (mapa[i][j] == "P"){
+                    return true;
+                }  
+          
             }
         }
 
-       if (mapa[pos_y + aprox_y][pos_x + aprox_x].equals("X")) {
-            System.out.println("Você não pode passar paredes; escolha outra direção!");
-        }
-   
-   
-   
-   
+        return false;
+
     }
 
 

@@ -11,8 +11,9 @@ public class Rungame {
      * Construtor padrão da classe; feito assim para automatizar o início de jogo
      */
     public Rungame(){
+        //Maze jogo = new Maze();
         Maze.prepararJogo();
-        comecarJogo();
+        runGame();
     }
 
 
@@ -21,9 +22,10 @@ public class Rungame {
      * @param 
      * @return void method; has no return
      */
-    public static void comecarJogo(){
+    public static void runGame(){
         int turno_atual = 1;
         while (turno_atual <= QTD_MAX_TURNOS){
+
             System.out.println("\nTURNO " + turno_atual + "!");
             
             Maze.imprimirMapa(); 
@@ -34,14 +36,27 @@ public class Rungame {
             isJogadaOK = Maze.atualizarPosicaoJogador();
             
             if(isJogadaOK == 1){
-                // movimentoInimigo
+                Maze.atualizarPosicaoInimigos();
                 turno_atual++;
             }
 
+            if (Maze.isPlayerVivo()){
+                continue;
+            }
+            else{
+                break;
+            }
+
+
         }
         
+        mensagemEncerramentoJogo();  
+    }
+
+
+    private static void mensagemEncerramentoJogo() {
         Maze.imprimirMapa();     
-        System.out.println("É isso aí, você conseguiu!!!!");  
+        System.out.println("É isso aí, você conseguiu!!!!");
     }
 
     /**
