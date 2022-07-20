@@ -18,8 +18,11 @@ public class Maze{
     public static String [][] mapa;
 
     // Atribs para o personagem do jogador
-    static int pos_x; 
-    static int pos_y; 
+    static int pos_x; // COLUNA
+    static int pos_y; // LINHA
+
+    static int pos_x_enemy;
+    static int pos_y_enemy;
 
     /**
      * Prepara o mapa de acordo com as instruções do arquivo txt lido (mapa pronto)
@@ -56,6 +59,7 @@ public class Maze{
 
                 mapa[i][j] = coladorLinha.substring(j, j+1);
                 
+                // para que não tenha problemas com duplicação de "P", usa-se o equals();
                 if (mapa[i][j].equals("P")){ 
                     pos_x = j; 
                     pos_y = i;
@@ -70,6 +74,8 @@ public class Maze{
      * @return void method; não tem retorno
      */
     public static void imprimirMapa(){
+        System.out.println("Jogador na coluna " + pos_x);
+
         System.out.println("\n### MAPA ATUAL");
         for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
@@ -128,6 +134,9 @@ public class Maze{
         }   
     } 
 
+
+    public static Enemy e = new Zombie();
+
     /**
      * Muda a posição dos inimigos no mapa.
      * @param 
@@ -140,17 +149,24 @@ public class Maze{
 
        for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
-                
-                 if (mapa[i][j] == "Z"){
-                    Enemy e = new Zombie();
+                 if (mapa[i][j].equals("Z")){
+                    System.out.println(mapa[i][j]);
+                    System.out.println("achei um zombie!!!");
+                    pos_x_enemy = j;
+                    pos_y_enemy = i;
                     // TO SELF: fazer um switch que caça os caracteres de Enemy, joga os que encontrar numa lista (GENERICS), movimente-os fora!
-                    e.movimentarInimigo(mapa, linhas, colunas, pos_x, pos_y, i, j);
+                    
                 }  
+                
           
             }
+            
         }
+        e.movimentarInimigo(mapa, linhas, colunas, pos_x, pos_y, pos_y_enemy, pos_x_enemy);
    
     }
+
+
 
     /**
      * Checa a existência do personagem/caractere do jogador no mapa.

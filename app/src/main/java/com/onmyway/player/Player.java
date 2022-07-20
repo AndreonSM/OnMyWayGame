@@ -21,5 +21,5 @@ public class Player {
         System.out.print("Escolha: ");     
     }
 
-    
+ 
 }

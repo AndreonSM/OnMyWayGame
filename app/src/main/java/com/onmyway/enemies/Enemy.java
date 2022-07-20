@@ -17,5 +17,52 @@ public interface Enemy {
                                   Integer x_player, Integer y_player, 
                                   Integer x_enemy, Integer y_enemy);
 
+    /**
+     * É a função que dita quantas unidades de espaço o inimigo pode se mover
+     * @return alcance do inimigo
+     */                          
+    public Integer getMovimento();
+
+    /**
+     * É a função que dita o alcance de ataque (em unidades de distância do mapa) de um inimigo em relação ao jogador
+     * @return alcance do inimigo
+     */
+    public Integer getAlcance();
+
+    public static boolean podeMatarPlayer(Enemy enemy, String[][] mapa, Integer x_player, Integer y_player, Integer x_enemy, Integer y_enemy){
+        if (x_player == x_enemy ) {
+            return checarObstaculos(enemy, mapa, y_player, y_enemy);
+        } else if (y_player == y_enemy){
+            return checarObstaculos(enemy, mapa, x_player, x_enemy);
+        } else
+            return false;
+
+    }
+
+    public static boolean checarObstaculos(Enemy enemy, String[][] mapa, Integer pos_player, Integer pos_enemy) {
+        if(Math.abs((pos_player - pos_enemy)) <= enemy.getAlcance()){
+            return true;
+        }
+
+        return false;
+    }
+  
+    /**
+     * É a função remove o caractere do jogador do mapa, efetivamente matando-o.
+     * @param mapa a matriz que representa o mapa do jogo
+     * @param linhas qtd de linhas
+     * @param colunas qtd de colunas
+     * @param x_player LINHA em que o JOGADOR, que o inimigo vai matar, está
+     * @param y_player COLUNA em que o JOGADOR, que o inimigo vai matar, está
+     */
+    public static void matarPlayer(String[][] mapa, Integer x, Integer y){
+
+       mapa[x][y] = "D";
+                                
+    }
+
+   
+
+    
 
 }

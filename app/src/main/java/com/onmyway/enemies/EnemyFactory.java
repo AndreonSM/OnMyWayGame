@@ -13,8 +13,11 @@ public class EnemyFactory {
         
         switch (picker) {
             case "W":
-                enemy = new SwarmOfWasps();
-                break;  
+                enemy = new Wasps();
+                break;
+            case "A":
+                enemy = new SkeletonArcher();
+                break;
             default:
                 enemy = new Zombie(); 
                 break;
