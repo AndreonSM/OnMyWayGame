@@ -143,9 +143,8 @@ public class Maze{
      * @return void method; has no return
      */
     public static void atualizarPosicaoInimigos(){
-        // TODO
  
-       System.out.println("ELES SE MOVEM RÁPIDO...");
+       System.out.println("ELES SE MOVEM RAPIDO...");
 
        for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
