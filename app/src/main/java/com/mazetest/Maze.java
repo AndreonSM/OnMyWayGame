@@ -164,6 +164,12 @@ public class Maze{
    
     }
 
+    public static void checarVida(){
+        if(Enemy.podeMatarPlayer(e, mapa, pos_x, pos_y, pos_x_enemy, pos_y_enemy)){
+            Enemy.matarPlayer(mapa, pos_x, pos_y);
+        }
+    }
+
 
 
     /**

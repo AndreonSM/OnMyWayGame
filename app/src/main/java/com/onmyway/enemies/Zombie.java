@@ -39,11 +39,11 @@ public class Zombie implements Enemy{
          && x_enemy + move < colunas
          && y_enemy + move >=0 
          && y_enemy + move < linhas) {
-            if (slope_Y_To_X_Walk_Rate >= 1){ // "se precisar andar mais em X do que em Y..."
+            if (slope_Y_To_X_Walk_Rate >= 1){ // "se precisar andar mais em Y do que em X..."
                 if (! mapa[x_enemy][y_enemy + move].equals("X")) {
 
                     // garantir o direcionamento correto do inimigo
-                    if (Math.max(y_player, x_enemy) == x_enemy){
+                    if (Math.max(y_player, y_enemy) == y_enemy){
                         if (move > 0)
                             move = move * (-1);
                     
@@ -62,7 +62,7 @@ public class Zombie implements Enemy{
                 if (! mapa[x_enemy + move][y_enemy].equals("X")) {
                 
                     // garantir o direcionamento correto do inimigo
-                    if (Math.max(x_player, y_enemy) == y_enemy){
+                    if (Math.max(x_player, x_enemy) == x_enemy){
                         if (move > 0)
                             move = move * (-1);
                     
@@ -74,10 +74,16 @@ public class Zombie implements Enemy{
                     }
                     else{
                         mapa[x_enemy][y_enemy] = ".";
-                        mapa[x_enemy - move][y_enemy - move] = "Z";
+                        mapa[x_enemy - move][y_enemy] = "Z";
                     }
                 }
+                
 
+            }
+
+            // verificar se o Zombie mexeu
+            if (! mapa[x_enemy][y_enemy].equals(".")) {
+                
             }
         } 
         

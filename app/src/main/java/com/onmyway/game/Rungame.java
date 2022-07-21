@@ -41,6 +41,8 @@ public class Rungame {
                 turno_atual++;
             }
 
+            Maze.checarVida();
+
             if (Maze.isPlayerVivo()){
                 continue;
             }
