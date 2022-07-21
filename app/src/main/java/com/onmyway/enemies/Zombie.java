@@ -41,8 +41,7 @@ public class Zombie implements Enemy{
                             move = move * (-1);
                     
                         System.out.println(move);
-                    } else
-                        move = getMovimento();
+                    }
 
                     mapa[x_enemy][y_enemy] = ".";
                     mapa[x_enemy + move][y_enemy] = "Z";
@@ -56,8 +55,7 @@ public class Zombie implements Enemy{
                             move = move * (-1);
                     
                         System.out.println(move);
-                    }else
-                        move = getMovimento();
+                    }
 
                     mapa[x_enemy][y_enemy] = ".";
                     mapa[x_enemy][y_enemy + move] = "Z";

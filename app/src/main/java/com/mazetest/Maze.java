@@ -174,8 +174,7 @@ public class Maze{
 
         for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
-                
-                 if (mapa[i][j] == "P"){
+                 if (mapa[i][j].equals("P")){
                     return true;
                 }  
           

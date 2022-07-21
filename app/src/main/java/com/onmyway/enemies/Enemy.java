@@ -19,7 +19,7 @@ public interface Enemy {
 
     /**
      * É a função que dita quantas unidades de espaço o inimigo pode se mover
-     * @return alcance do inimigo
+     * @return quantidade de passos do inimigo
      */                          
     public Integer getMovimento();
 
