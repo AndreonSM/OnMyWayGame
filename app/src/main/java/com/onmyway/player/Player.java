@@ -2,8 +2,6 @@ package com.onmyway.player;
 
 public class Player {
     
-    String name;
-
     /**
      * Inicia um turno do jogador, mostrando as opções que ele tem 
      * @param 
