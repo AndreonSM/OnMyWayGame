@@ -19,20 +19,27 @@ public class Zombie implements Enemy{
 
         System.out.println(move);
         System.out.println("movimentando inimigos: ");
+
         System.out.println("X PLAYER: " + x_enemy);
         System.out.println("Y PLAYER: " + y_enemy);
 
         System.out.println("X E: " + x_player);
         System.out.println("Y E: " + y_player);
 
-        int absDistX = Math.abs(y_player - x_enemy);
-        int absDistY = Math.abs(x_player - y_enemy);
+        //double absDist = Math.sqrt((Math.pow((x_player - x_enemy), 2) + Math.pow((y_enemy - y_player),2)));
+        
+        double slope_Y_To_X_Walk_Rate;
+
+        if(x_player - x_enemy != 0)
+            slope_Y_To_X_Walk_Rate = (y_enemy - y_player) / (x_player - x_enemy); 
+        else
+            slope_Y_To_X_Walk_Rate = (y_enemy - y_player);
 
         if (x_enemy + move >= 0 
          && x_enemy + move < colunas
          && y_enemy + move >=0 
          && y_enemy + move < linhas) {
-            if (absDistX < absDistY){
+            if (slope_Y_To_X_Walk_Rate >= 1){ // "se precisar andar mais em X do que em Y..."
                 if (! mapa[x_enemy][y_enemy + move].equals("X")) {
 
                     // garantir o direcionamento correto do inimigo
@@ -42,9 +49,14 @@ public class Zombie implements Enemy{
                     
                         System.out.println(move);
                     }
-
-                    mapa[x_enemy][y_enemy] = ".";
-                    mapa[x_enemy + move][y_enemy] = "Z";
+                    if (! mapa[x_enemy + move][y_enemy].equals("X")){
+                        mapa[x_enemy][y_enemy] = ".";
+                        mapa[x_enemy + move][y_enemy] = "Z";
+                    }
+                    else{
+                        mapa[x_enemy][y_enemy] = ".";
+                        mapa[x_enemy][y_enemy - move] = "Z";
+                    }
                 }
             } else{ // a grande diferença do seu "if" é a preferencia de eixo a se mover
                 if (! mapa[x_enemy + move][y_enemy].equals("X")) {
@@ -56,9 +68,14 @@ public class Zombie implements Enemy{
                     
                         System.out.println(move);
                     }
-
-                    mapa[x_enemy][y_enemy] = ".";
-                    mapa[x_enemy][y_enemy + move] = "Z";
+                    if (! mapa[x_enemy + move][y_enemy].equals("X")){
+                        mapa[x_enemy][y_enemy] = ".";
+                        mapa[x_enemy][y_enemy + move] = "Z";
+                    }
+                    else{
+                        mapa[x_enemy][y_enemy] = ".";
+                        mapa[x_enemy - move][y_enemy - move] = "Z";
+                    }
                 }
 
             }

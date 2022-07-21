@@ -150,8 +150,8 @@ public class Maze{
        for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
                  if (mapa[i][j].equals("Z")){
-                    pos_x_enemy = j;
-                    pos_y_enemy = i;
+                    pos_x_enemy = i;
+                    pos_y_enemy = j;
                     // TO SELF: fazer um switch que caça os caracteres de Enemy, joga os que encontrar numa lista (GENERICS), movimente-os fora!
                     
                 }  
@@ -160,7 +160,7 @@ public class Maze{
             }
             
         }
-        e.movimentarInimigo(mapa, linhas, colunas, pos_x, pos_y, pos_y_enemy, pos_x_enemy);
+        e.movimentarInimigo(mapa, linhas, colunas, pos_x, pos_y, pos_x_enemy, pos_y_enemy);
    
     }
 
