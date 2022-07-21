@@ -108,7 +108,7 @@ public class Maze{
 
         // Checando se o jogador não tenta sair do mapa
         if (pos_x + mudar_x >= 0 
-         && pos_x + mudar_x < colunas 
+         && pos_x + mudar_x < colunas
          && pos_y + mudar_y >=0 
          && pos_y + mudar_y < linhas) {
 
@@ -150,8 +150,6 @@ public class Maze{
        for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
                  if (mapa[i][j].equals("Z")){
-                    System.out.println(mapa[i][j]);
-                    System.out.println("achei um zombie!!!");
                     pos_x_enemy = j;
                     pos_y_enemy = i;
                     // TO SELF: fazer um switch que caça os caracteres de Enemy, joga os que encontrar numa lista (GENERICS), movimente-os fora!

@@ -12,43 +12,59 @@ public class Zombie implements Enemy{
         return 1;
     }
 
-    int move;
+    int move = getMovimento();
 
     @Override
     public void movimentarInimigo(String[][] mapa, Integer linhas, Integer colunas, Integer x_player, Integer y_player, Integer x_enemy, Integer y_enemy) {
 
-        move = getMovimento();
-
         System.out.println(move);
-        System.out.println("HEH XD");
+        System.out.println("movimentando inimigos: ");
+        System.out.println("X PLAYER: " + x_enemy);
+        System.out.println("Y PLAYER: " + y_enemy);
 
-        int absDistX = Math.abs(x_player - x_enemy);
-        int absDistY = Math.abs(y_player - y_enemy);
+        System.out.println("X E: " + x_player);
+        System.out.println("Y E: " + y_player);
 
-        if (absDistX < absDistY){
-            if (!mapa[x_enemy][y_enemy + move].equals("X")) {
+        int absDistX = Math.abs(y_player - x_enemy);
+        int absDistY = Math.abs(x_player - y_enemy);
 
-                // garantir o direcionamento correto do inimigo
-                if (Math.max(y_player, y_enemy) == x_enemy){
-                    Math.negateExact(move);
+        if (x_enemy + move >= 0 
+         && x_enemy + move < colunas
+         && y_enemy + move >=0 
+         && y_enemy + move < linhas) {
+            if (absDistX < absDistY){
+                if (! mapa[x_enemy][y_enemy + move].equals("X")) {
+
+                    // garantir o direcionamento correto do inimigo
+                    if (Math.max(y_player, x_enemy) == x_enemy){
+                        if (move > 0)
+                            move = move * (-1);
+                    
+                        System.out.println(move);
+                    } else
+                        move = getMovimento();
+
+                    mapa[x_enemy][y_enemy] = ".";
+                    mapa[x_enemy + move][y_enemy] = "Z";
                 }
-
-                mapa[x_enemy][y_enemy] = ".";
-                mapa[x_enemy][y_enemy + move] = "Z";
-            }
-        } else{ // a grande diferença do seu "if" é a preferencia de eixo a se mover
-            if (!mapa[x_enemy +move][y_enemy].equals("X")) {
+            } else{ // a grande diferença do seu "if" é a preferencia de eixo a se mover
+                if (! mapa[x_enemy + move][y_enemy].equals("X")) {
                 
-                // garantir o direcionamento correto do inimigo
-                if (Math.max(x_player, x_enemy) == x_enemy){
-                    Math.negateExact(move);
+                    // garantir o direcionamento correto do inimigo
+                    if (Math.max(x_player, y_enemy) == y_enemy){
+                        if (move > 0)
+                            move = move * (-1);
+                    
+                        System.out.println(move);
+                    }else
+                        move = getMovimento();
+
+                    mapa[x_enemy][y_enemy] = ".";
+                    mapa[x_enemy][y_enemy + move] = "Z";
                 }
 
-                mapa[x_enemy][y_enemy] = ".";
-                mapa[x_enemy + move][y_enemy] = "Z";
             }
-
-        }
+        } 
         
     }
 
