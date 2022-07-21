@@ -61,7 +61,7 @@ public class Maze{
                 
                 // para que não tenha problemas com duplicação de "P", usa-se o equals();
                 if (mapa[i][j].equals("P")){ 
-                    pos_x = j; 
+                    pos_x = j; // malditas matrizes...
                     pos_y = i;
                 }
             }
@@ -164,9 +164,9 @@ public class Maze{
    
     }
 
-    public static void checarVida(){
-        if(Enemy.podeMatarPlayer(e, mapa, pos_x, pos_y, pos_x_enemy, pos_y_enemy)){
-            Enemy.matarPlayer(mapa, pos_x, pos_y);
+    public static void checarVida(){ // lembre-se: está invertido o player (malditas matrizes)
+        if(Enemy.podeMatarPlayer(e, mapa, pos_y, pos_x, pos_x_enemy, pos_y_enemy)){ 
+            Enemy.matarPlayer(mapa, pos_y, pos_x);
         }
     }
 

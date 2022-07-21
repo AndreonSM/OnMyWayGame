@@ -55,12 +55,15 @@ public class Rungame {
         
     }
 
-
+    /**
+     * Função que exibe a mensagem final do jogo!
+     * @return has no return; void method
+     */
     private static void mensagemEncerramentoJogo() {
 
         Maze.imprimirMapa();
 
-        if (! (turno_atual > QTD_MAX_TURNOS)){
+        if (! (turno_atual > QTD_MAX_TURNOS) || ! Maze.isPlayerVivo()){
             System.out.println("Você morreu... :(");
         } else
             System.out.println("É isso aí, você conseguiu!!!! :D");
