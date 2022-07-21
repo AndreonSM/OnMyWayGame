@@ -163,6 +163,10 @@ public class Maze{
    
     }
 
+    /**
+     * Check a cada turno a função que dita se o jogador vai (ou não) morrer
+     * @return no return; void method
+     */
     public static void checarVida(){ // lembre-se: está invertido o player (malditas matrizes)
         if(Enemy.podeMatarPlayer(e, mapa, pos_y, pos_x, pos_x_enemy, pos_y_enemy)){ 
             Enemy.matarPlayer(mapa, pos_y, pos_x);

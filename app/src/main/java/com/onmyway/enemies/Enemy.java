@@ -29,6 +29,16 @@ public interface Enemy {
      */
     public Integer getAlcance();
 
+    /**
+     * É o método que dita, quando chamado, se o jogador pode (ou não) ser morto por um inimigo. 
+     * @param enemy inimigo analisado
+     * @param mapa o mapa do jogo
+     * @param x_player posição x do jogador
+     * @param y_player posição y do jogador
+     * @param x_enemy posição x do inimigo
+     * @param y_enemy posição y do inimigo
+     * @return true, se o jogador pode ser morto; false, caso contrário
+     */
     public static boolean podeMatarPlayer(Enemy enemy, String[][] mapa, Integer x_player, Integer y_player, Integer x_enemy, Integer y_enemy){
         if (x_player == x_enemy ) {
             return checarObstaculos(enemy, mapa, y_player, y_enemy);
@@ -39,6 +49,14 @@ public interface Enemy {
 
     }
 
+    /**
+     * Método auxiliar que checa a distância entre um jogador e um dado inimigo que está na mesma linha ou coluna que ele
+     * @param enemy inimigo analisados
+     * @param mapa o mapa do jogo
+     * @param pos_player posição do jogador
+     * @param pos_enemy posição do inimigo
+     * @return true, caso o jogador esteja no alcançe do monstro; false, caso contrário
+     */
     public static boolean checarObstaculos(Enemy enemy, String[][] mapa, Integer pos_player, Integer pos_enemy) {
         if(Math.abs((pos_player - pos_enemy)) <= enemy.getAlcance()){
             return true;
