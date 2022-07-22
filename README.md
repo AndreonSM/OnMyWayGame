@@ -5,7 +5,6 @@
 ## Video de apresentação
 [Click para ir ao YouTube (abre por cima dessa janela)](https://youtu.be/UF1scIobo2g "Link para apresentação no youtube")
 
-<a href="https://youtu.be/UF1scIobo2g" target="_blank">Link para apresentação no Youtube EM UMA NOVA ABA</a>
 ---
 
 ## Descrição
