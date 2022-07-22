@@ -3,8 +3,9 @@
 ## Disclaimer: existem módulos (classes) inutilizados no projeto; favor, desconsidere-os se quiser analisar apenas o funcionamento de execução.
 
 ## Video de apresentação
-[Click para ir ao YouTube](https://youtu.be/UF1scIobo2g "Link para apresentação no youtube")
+[Click para ir ao YouTube (abre por cima dessa janela)](https://youtu.be/UF1scIobo2g "Link para apresentação no youtube")
 
+<a href="https://youtu.be/UF1scIobo2g" target="_blank">Link para apresentação no Youtube EM UMA NOVA ABA</a>
 ---
 
 ## Descrição
