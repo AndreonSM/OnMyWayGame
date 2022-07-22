@@ -17,15 +17,6 @@ public class Zombie implements Enemy{
     @Override
     public void movimentarInimigo(String[][] mapa, Integer linhas, Integer colunas, Integer x_player, Integer y_player, Integer x_enemy, Integer y_enemy) {
 
-        System.out.println(move);
-        System.out.println("movimentando inimigos: ");
-
-        System.out.println("X PLAYER: " + x_enemy);
-        System.out.println("Y PLAYER: " + y_enemy);
-
-        System.out.println("X E: " + x_player);
-        System.out.println("Y E: " + y_player);
-
         //double absDist = Math.sqrt((Math.pow((x_player - x_enemy), 2) + Math.pow((y_enemy - y_player),2)));
         
         double slope_Y_To_X_Walk_Rate;
@@ -83,7 +74,7 @@ public class Zombie implements Enemy{
 
             // verificar se o Zombie mexeu
             if (! mapa[x_enemy][y_enemy].equals(".")) {
-                
+                // Discontinued
             }
         } 
         

@@ -1,9 +1,9 @@
 # OnMyWay 
 
-## Disclaimer: este ainda é um README INCOMPLETO.
+## Disclaimer: existem módulos (classes) inutilizados no projeto; favor, desconsidere-os se quiser analisar apenas o funcionamento de execução.
 
 ## Video de apresentação
-[Click para ir ao YouTube](https://www.youtube.com "Link para apresentação no youtube")
+[Click para ir ao YouTube](https://youtu.be/UF1scIobo2g "Link para apresentação no youtube")
 
 ---
 
@@ -44,11 +44,9 @@ Andreon Souza de Medeiros
 
 ## Como realizar o build
 
-Obs: é necessário ter o Gradle instalado para realizar o build
+Após clonar o projeto para seu ambiente local, abra uma janela terminal/console na pasta do projeto local e digite:
 
-Com o Gradle instalado no seu sistema, após clonar o projeto para seu ambiente local, abra uma janela terminal/console na pasta do projeto local e digite:
-
-`gradle clean build`
+`./gradlew clean build`
 
 ---
 

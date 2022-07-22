@@ -144,7 +144,7 @@ public class Maze{
      */
     public static void atualizarPosicaoInimigos(){
  
-       System.out.println("ELES SE MOVEM RAPIDO...");
+       System.out.println("OS INIMIGOS SE MOVEM...");
 
        for (int i = 0; i < linhas; i++){
             for (int j = 0; j < colunas; j++){
